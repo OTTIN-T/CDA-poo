@@ -2,3 +2,4 @@
 app
 logs/*
 !logs/.gitkeep
+.env
