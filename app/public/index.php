@@ -1,9 +1,11 @@
 <?php
 
-use App\Kernel;
+// require_once './Person.php';
+// use Tim\Person;
 
-require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
+// $timPerson = new Person;
+// echo $timPerson->name;
 
-return function (array $context) {
-    return new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);
-};
+require_once 'vendor/autoload.php';
+
+new Mii\Invoice\Kernel;
