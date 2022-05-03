@@ -9,7 +9,7 @@
 </head>
 
 <body>
-     My name is <?= $name ?>
+     My name is {{ name }}
 </body>
 
 </html>

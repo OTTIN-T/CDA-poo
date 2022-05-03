@@ -6,8 +6,10 @@ class AppController
 {
      public function home()
      {
-          $name = 'Tim';
-          require_once __DIR__ . "/../template/app/index.php";
+          $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../template');
+          $twig = new \Twig\Environment($loader, []);
+
+          echo $twig->render('app/index.php', ['name' => 'Tim']);
      }
 
      // sur /invoice
