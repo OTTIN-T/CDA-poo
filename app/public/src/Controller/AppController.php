@@ -2,14 +2,14 @@
 
 namespace Mii\Invoice\Controller;
 
-class AppController
+use Mii\Framework\AbstractController;
+
+class AppController extends AbstractController
 {
      public function home()
      {
-          $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../template');
-          $twig = new \Twig\Environment($loader, []);
 
-          echo $twig->render('app/index.php', ['name' => 'Tim']);
+          $this->render('app/index.php',  ['name' => 'Tim']);
      }
 
      // sur /invoice

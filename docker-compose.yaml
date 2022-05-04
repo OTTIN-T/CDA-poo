@@ -24,6 +24,11 @@ services:
     working_dir: ${WORKDIR}
     depends_on:
       - mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
   symfony:
     container_name: app_poo_sf
     build: .docker/symfony-cli
@@ -32,7 +37,11 @@ services:
       - ${SYMFONY_APP}:${WORKDIR}
     #   - ${SYMFONY_APP}/var/cache:${WORKDIR}/var/cache:delegated
     environment:
-      - NODEJS_VERSION=${NODEJS_VERSION}
+      NODEJS_VERSION: ${NODEJS_VERSION}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
   nginx:
     container_name: app_poo_nginx
     build: .docker/nginx

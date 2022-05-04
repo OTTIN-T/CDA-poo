@@ -6,7 +6,7 @@ $routes = [
           "method" => "home"
      ],
      "/invoice" => [
-          "controller" => "Mii\\Invoice\\Controller\\AppController",
+          "controller" => "Mii\\Invoice\\Controller\\InvoiceController",
           "method" => "billing"
      ],
      "/404" => [

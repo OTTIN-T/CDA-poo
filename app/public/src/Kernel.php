@@ -13,8 +13,14 @@ class Kernel
      {
           require_once __DIR__ . '/../config/routes.php';
 
-          $route = isset($routes[$_SERVER['REQUEST_URI']]) ?
-               $routes[$_SERVER['REQUEST_URI']] :
+          $uri = $_SERVER['REQUEST_URI'];
+
+          if ($uri !== '/') {
+               $uri = rtrim($uri, '/');
+          }
+
+          $route = isset($routes[$uri]) ?
+               $routes[$uri] :
                $routes['/404'];
 
           $method = $route['method'];
