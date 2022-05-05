@@ -2,7 +2,9 @@
 
 namespace Mii\Invoice\Model;
 
-class Product
+use Mii\Framework\AbstractModel;
+
+class Product extends AbstractModel
 {
      private $id;
      private $name;
@@ -53,7 +55,7 @@ class Product
       */
      public function getPrice()
      {
-          return $this->price;
+          return (float) $this->price;
      }
 
      /**

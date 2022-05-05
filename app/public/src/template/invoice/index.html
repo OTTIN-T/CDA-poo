@@ -9,7 +9,35 @@
 </head>
 
 <body>
-     Hello invoice
+     <h1>Votre commande:</h1>
+
+     <table>
+          <thead>
+               <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+               <tr>
+          </thead>
+          <tbody>
+               {% for orderLine in orderLines %}
+               <tr>
+                    <td>{{ orderLine.product.name}}</td>
+                    <td>{{ orderLine.product.price}} €</td>
+                    <td>{{ orderLine.quantity}}</td>
+                    <td>{{ orderLine.total}} €</td>
+               </tr>
+               {% endfor %}
+          </tbody>
+          <tfoot>
+               <tr>
+                    <th>Total: {{ total }} €</th>
+               </tr>
+          </tfoot>
+     </table>
+     <button>Save</button>
+
 </body>
 
 </html>

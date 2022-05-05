@@ -39,4 +39,4 @@ echo $dog->paws;
 // var_dump($dog);
 
 // $dog = unserialize($dog);
-var_dump($dog);
+// var_dump($dog);

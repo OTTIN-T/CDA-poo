@@ -1,0 +1,3 @@
+create table invoice (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, created_at DATETIME DEFAULT CURRENT_TIMESTAMP)
+;
+create table invoice_line (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, invoiceId INT NOT NULL, FOREIGN KEY (invoiceId) REFERENCES invoice(id), productId INT NOT NULL, FOREIGN KEY (productId) REFERENCES product(id), product_name VARCHAR(255) NOT NULL, product_price FLOAT NOT NULL, quantity VARCHAR(255) NOT NULL);

@@ -57,8 +57,8 @@ class Person extends Animal implements PersonInterface
 }
 
 $person = new Person(["name" => "Ottin", "firstName" => "Tim"]);
-var_dump($person);
-var_dump($person->getFullName());
+// var_dump($person);
+// var_dump($person->getFullName());
 
 $eyeys = Person::$eyes;
-var_dump($eyeys);
+// var_dump($eyeys);
