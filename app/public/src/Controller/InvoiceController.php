@@ -46,7 +46,6 @@ class InvoiceController extends AbstractController
             "total" => $total
         ];
 
-        $this->render($path, $data);
 
         $content = (new TwigService)->render(
             $path,
@@ -54,6 +53,16 @@ class InvoiceController extends AbstractController
         );
         exec("echo '$content' | wkhtmltopdf - " . __DIR__ . "/../../document/facture-" . $invoice->getId() . ".pdf");
 
+        /**
+         * If you want dl the pdf, but we can't use  $this->render($path, $data);
+         */
+        // header('Content-Type: application/pdf');
+        // header("Content-Disposition:attachment;filename=" . $invoice->getId() . ".pdf");
+
+        // readfile(__DIR__ . "/../../document/invoice-" . $invoice->getId() . ".pdf");
+        // exit;
+
+        $this->render($path, $data);
         $cartService->reset();
     }
 }
