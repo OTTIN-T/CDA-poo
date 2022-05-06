@@ -2,33 +2,61 @@
 
 namespace Mii\Invoice\Controller;
 
+
 use Mii\Framework\AbstractController;
-use Mii\Invoice\Manager\ProductManager;
 use Mii\Invoice\Manager\InvoiceManager;
+use Mii\Invoice\Manager\ProductManager;
+use Mii\Invoice\Model\Invoice;
+use Mii\Invoice\Model\InvoiceLine;
+use Mii\Invoice\Service\CartService;
+use Mii\Invoice\Service\TwigService;
 
 class InvoiceController extends AbstractController
 {
-     public function billing()
-     {
-          $order = [
-               ["product" => 1, "quantity" => 3],
-               ["product" => 2, "quantity" => 2],
-               ["product" => 3, "quantity" => 1],
-          ];
+    public function billing()
+    {
 
-          $orderLines = [];
-          $total = 0;
+        $cartService = new CartService;
+        $cart = $cartService->get();
+        $cartItems = $cart->getCartItems();
 
-          foreach ($order as $orderLine) {
-               $product = (new ProductManager)->findOneBy($orderLine["product"]);
+        $total = 0;
 
-               $orderLines[] = ["product" => $product, "quantity" => $orderLine["quantity"], "total" => $product->getPrice() * $orderLine["quantity"]];
+        $invoice = new Invoice();
 
-               $total += $product->getPrice() * $orderLine["quantity"];
-          }
+        foreach ($cartItems as $cartLine) {
+            $product = (new ProductManager)->findOneBy($cartLine->getProduct()->getId());
 
-          $this->render('invoice/index.html', ["orderLines" => $orderLines, "total" => $total]);
+            $invoiceLine = new InvoiceLine();
+            $invoiceLine
+                ->setProduct($product)
+                ->setProductName($product->getName())
+                ->setProductPrice($product->getPrice())
+                ->setQuantity($cartLine->getQuantity());
 
-          return (new InvoiceManager)->createInvoiceList($orderLines);
-     }
+            $invoice->addInvoiceLine($invoiceLine);
+
+            $total += $product->getPrice() * $cartLine->getQuantity();
+        }
+
+        (new InvoiceManager)->create($invoice);
+
+
+
+        $this->render('invoice/index.html', [
+            "invoice" => $invoice,
+            "total" => $total
+        ]);
+
+        $content = (new TwigService)->render(
+            'invoice/index.html',
+            [
+                "invoice" => $invoice,
+                "total" => $total
+            ]
+        );
+
+        exec("echo '$content' | wkhtmltopdf - " . __DIR__ . "/../../document/facture-" . $invoice->getId() . ".pdf");
+        $cartService->reset();
+    }
 }

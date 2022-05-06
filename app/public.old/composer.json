@@ -1,0 +1,17 @@
+{
+    "name": "mii/invoice",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Mii\\Invoice\\": "src/",
+            "Mii\\Framework\\": "framework/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require-dev": {
+        "symfony/var-dumper": "^6.0"
+    },
+    "require": {
+        "twig/twig": "^3.0"
+    }
+}

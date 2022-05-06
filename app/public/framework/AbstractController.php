@@ -2,13 +2,12 @@
 
 namespace Mii\Framework;
 
+use Mii\Invoice\Service\TwigService;
+
 abstract class AbstractController
 {
-     public function render($template, $data = [])
-     {
-          $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../src/template');
-          $twig = new \Twig\Environment($loader, []);
-
-          echo $twig->render($template, $data);
-     }
+    public function render($template, $data = [])
+    {
+        echo (new TwigService)->render($template, $data);
+    }
 }

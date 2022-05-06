@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+</head>
+
+<body>
+     <h1>Votre panier</h1>
+     <table>
+          <thead>
+               <tr>
+                    <th>Product Id</th>
+                    <th>Name</th>
+                    <th>unit price</th>
+                    <th>quantity</th>
+               </tr>
+          </thead>
+          <tbody>
+               {% for item in cart.cartItems %}
+               <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.product.price }}</td>
+                    <td>{{ item.product.price * item.quantity }}</td>
+                    <td>{{ item.quantity }}</td>
+
+               </tr>
+               {% endfor %}
+          </tbody>
+          <tfoot>
+               <tr>
+                    <td>
+                         total: {{ cart.total }} €
+                    </td>
+               </tr>
+          </tfoot>
+     </table>
+     <button><a href="/">Home</a></button>
+     <button><a href="/invoice">Save</a></button>
+</body>
+
+</html>

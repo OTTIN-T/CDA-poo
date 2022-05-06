@@ -2,42 +2,41 @@
 <html lang="en">
 
 <head>
-     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 <body>
-     <h1>Votre commande:</h1>
+    <h1>Votre commande Num: {{invoice.id}} est sauvegardée !</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>InvoiceLine Id</th>
+                <th>Product Id</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>unit price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for invoiceLine in invoice.invoiceLines %}
+            <tr>
+                <td>{{ invoiceLine.id }}</td>
+                <td>{{ invoiceLine.product.id }}</td>
+                <td>{{ invoiceLine.product.name }}</td>
+                <td>{{ invoiceLine.quantity }}</td>
+                <td>{{ invoiceLine.product.price }}</td>
+                <td>{{ invoiceLine.product.price * invoiceLine.quantity }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-     <table>
-          <thead>
-               <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-               <tr>
-          </thead>
-          <tbody>
-               {% for orderLine in orderLines %}
-               <tr>
-                    <td>{{ orderLine.product.name}}</td>
-                    <td>{{ orderLine.product.price}} €</td>
-                    <td>{{ orderLine.quantity}}</td>
-                    <td>{{ orderLine.total}} €</td>
-               </tr>
-               {% endfor %}
-          </tbody>
-          <tfoot>
-               <tr>
-                    <th>Total: {{ total }} €</th>
-               </tr>
-          </tfoot>
-     </table>
-     <button>Save</button>
-
+    <h3>Total Facture: {{ total }}</h3>
+    <button><a href="/">Home</a></button>
 </body>
 
 </html>
