@@ -2,13 +2,10 @@
 
 namespace Mii\Invoice\Controller;
 
-
 use Mii\Framework\AbstractController;
 use Mii\Invoice\Manager\ProductManager;
-use Mii\Invoice\Model\Cart;
 use Mii\Invoice\Model\CartItem;
 use Mii\Invoice\Service\CartService;
-use Mii\Invoice\Service\SessionStorage;
 
 class CartController extends AbstractController
 {

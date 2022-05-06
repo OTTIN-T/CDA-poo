@@ -17,9 +17,6 @@ class FlashService
           }
      }
 
-     /**
-      * Get the value of cart
-      */
      public function get()
      {
           return clone $this->sessionStorage->get(Flashbag::FLASHBAG);

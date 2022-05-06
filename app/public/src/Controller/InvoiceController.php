@@ -2,7 +2,6 @@
 
 namespace Mii\Invoice\Controller;
 
-
 use Mii\Framework\AbstractController;
 use Mii\Invoice\Manager\InvoiceManager;
 use Mii\Invoice\Manager\ProductManager;
@@ -41,22 +40,20 @@ class InvoiceController extends AbstractController
 
         (new InvoiceManager)->create($invoice);
 
-
-
-        $this->render('invoice/index.html', [
+        $path = 'invoice/index.html';
+        $data =  [
             "invoice" => $invoice,
             "total" => $total
-        ]);
+        ];
+
+        $this->render($path, $data);
 
         $content = (new TwigService)->render(
-            'invoice/index.html',
-            [
-                "invoice" => $invoice,
-                "total" => $total
-            ]
+            $path,
+            $data
         );
-
         exec("echo '$content' | wkhtmltopdf - " . __DIR__ . "/../../document/facture-" . $invoice->getId() . ".pdf");
+
         $cartService->reset();
     }
 }

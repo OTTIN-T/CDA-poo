@@ -14,19 +14,11 @@ class Cart extends AbstractModel
 
      private $total = 0;
 
-     /**
-      * Get the value of cartItems
-      */
      public function getCartItems()
      {
           return $this->cartItems;
      }
 
-     /**
-      * Set the value of cartItem
-      *
-      * @return  self
-      */
      public function addCartItem($cartItem)
      {
           $foundItem = array_filter($this->cartItems, function ($element) use ($cartItem) {
@@ -50,19 +42,11 @@ class Cart extends AbstractModel
           return $this;
      }
 
-     /**
-      * Get the value of total
-      */
      public function getTotal()
      {
           return $this->total;
      }
 
-     /**
-      * Set the value of total
-      *
-      * @return  self
-      */
      public function setTotal($total)
      {
           $this->total = $total;

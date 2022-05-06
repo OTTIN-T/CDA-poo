@@ -14,7 +14,6 @@ class ProductController extends AbstractController
 
           $product = (new ProductManager)->findOneBy($productId);
 
-
           if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                (new ProductManager)->updateProduct($_POST, $productId);
                $product->setName($_POST['name']);
@@ -25,11 +24,6 @@ class ProductController extends AbstractController
           }
 
           $this->render('product/product.html', ["product" => $product]);
-     }
-
-     // sur /invoice
-     public function billing()
-     {
      }
 
      public function notFound()

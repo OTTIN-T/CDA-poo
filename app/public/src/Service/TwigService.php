@@ -2,7 +2,6 @@
 
 namespace Mii\Invoice\Service;
 
-
 class TwigService
 {
      public function render($template, $data = [])

@@ -13,10 +13,10 @@ class InvoiceManager extends AbstractManager
 
         try {
             $this->connection->exec($sql);
-        } catch(\PDOException $e) {
+        } catch (\PDOException $e) {
             dd($e);
         }
-        
+
         $invoiceId = $this->connection->lastInsertId();
 
         $invoice->setId($invoiceId);

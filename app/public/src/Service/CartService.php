@@ -16,9 +16,6 @@ class CartService
           }
      }
 
-     /**
-      * Get the value of cart
-      */
      public function get()
      {
           return clone $this->sessionStorage->get(Cart::CART);

@@ -2,7 +2,6 @@
 
 namespace Mii\Invoice\Manager;
 
-
 use Mii\Framework\AbstractManager;
 use Mii\Invoice\Model\InvoiceLine;
 
